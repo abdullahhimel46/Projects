@@ -1,0 +1,107 @@
+# Employee stats pro
+#creating a list of tuples called employees
+employees=[('Name','Dept','Salary')]
+
+#preload 5 employees
+employees=[
+    ("Alice","HR",50000),
+    ("Bob","Engineering",75000),
+    ("Charlie","Marketing",45000),
+    ("Diana","Finance",60000),
+    ("Eve","Sales",55000)
+]
+
+# print data type of Salary variable 
+#print(type(employees[0][2]))
+
+#creating add_employee function
+def add_employee():
+    print()
+    print("Add new Employee: ")
+    name=input("Enter employee name: ")
+    dept=input("Enter department name: ")
+    salary=int(input("Enter salary: "))
+    #append new employee
+    employees.append((name,dept,salary))
+
+#view all employees
+def view_employees():
+    print()
+    print("Employee list: ")
+    for x,y,z in employees:
+        print(f"Name: {x}, Department: {y}, Salary: ${z}")
+
+#search an employee by name
+def search_employee():
+    #printing a new line
+    print()
+    name=input(("Enter the employee name to search: "))
+    flag=False
+    for x,y,z in employees:
+        if x==name:
+            flag=True
+    if flag==True:    
+        print(f"Name: {x}, Department: {y}, Salary: ${z}")
+    else:
+        print(f"No employee found named {name}")
+
+#calculate total salary
+def total_salary_payout():
+    print()
+    tot_sal=0
+    for x,y,z in employees:
+        tot_sal+=z
+    print(f"The total salary payout for all employee is: ${tot_sal}")
+
+#update salary
+def update_salary():
+    print()
+    name=input("Enter name to update salary: ")
+    flag=False
+    for i,(x,y,z) in enumerate(employees):
+        if x==name:
+            flag=True
+            tot_sal=z+int(input("Enter amount to add: "))
+            employees[i]=(x,y,tot_sal)
+            print(f"Updated salary of {name} is: {tot_sal}")
+            break
+
+    if not flag:
+        print(f"There's no employee named {name}!")
+
+#Home menue
+
+def home_menue():
+    print("""
+    Welcome to the home page:
+    1. View employees
+    2. Add employee
+    3. Search an employee by name
+    4. Total salary payout
+    5. Update an employee's salary
+    6. Exit
+
+""")
+
+#main
+while True:
+    home_menue()
+    ch=input("Enter your choice(1-6): ")
+
+    if ch=='1':
+        view_employees()
+    elif ch=='2':
+        add_employee()
+        view_employees()
+    #view_employees()
+    elif ch=='3':
+        search_employee()
+    elif ch=='4':
+        total_salary_payout()
+    elif ch=='5':
+        update_salary()
+    elif ch=='6':
+        print("Program exited, bye!")
+        break
+    else:
+        print("Invalid choice! Please enter your choice between (1-6).")
